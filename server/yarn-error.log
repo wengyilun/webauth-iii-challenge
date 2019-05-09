@@ -1,0 +1,49 @@
+Arguments: 
+  /usr/local/Cellar/node/12.1.0/bin/node /Users/yilunweng/.yarn/bin/yarn.js add express helmet express-session nodemon jsonwebtoken bcrypthjs
+
+PATH: 
+  /Users/yilunweng/.rvm/gems/ruby-2.5.3/bin:/Users/yilunweng/.rvm/gems/ruby-2.5.3@global/bin:/Users/yilunweng/.rvm/rubies/ruby-2.5.3/bin:/Users/yilunweng/.yarn/bin:/Users/yilunweng/.config/yarn/global/node_modules/.bin:/usr/local/bin:/Users/yilunweng/.nvm/versions/node/v8.9.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+  :/Users/yilunweng/.rvm/bin
+  source /Users/yilunweng/.bash_profile:/Users/yilunweng/.rvm/bin
+
+Yarn version: 
+  1.15.2
+
+Node version: 
+  12.1.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/bcrypthjs: Not found
+      at Request.params.callback [as _callback] (/Users/yilunweng/.yarn/lib/cli.js:66058:18)
+      at Request.self.callback (/Users/yilunweng/.yarn/lib/cli.js:129541:22)
+      at Request.emit (events.js:196:13)
+      at Request.<anonymous> (/Users/yilunweng/.yarn/lib/cli.js:130513:10)
+      at Request.emit (events.js:196:13)
+      at IncomingMessage.<anonymous> (/Users/yilunweng/.yarn/lib/cli.js:130435:12)
+      at Object.onceWrapper (events.js:284:20)
+      at IncomingMessage.emit (events.js:201:15)
+      at endReadableNT (_stream_readable.js:1130:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:17)
+
+npm manifest: 
+  {
+    "name": "server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node server.js"
+    },
+    "author": "",
+    "license": "ISC"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
