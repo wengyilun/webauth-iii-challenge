@@ -3,10 +3,10 @@ const helmet = require('helmet')
 const cors =  require('cors')
 const config = require('./config')
 const token = require('jsonwebtoken')
+const {register, login, restricted} = require('./utils/auth')
 const videoRouter = require('./resources/video/video-router')
 const shelfRouter = require('./resources/shelf/shelf-router')
 const bookmarkRouter = require('./resources/bookmark/bookmark-router')
-const authRouter = require('./resources/auth/auth-router')
 const userRouter = require('./resources/user/user-router')
 // const { connect } = './utils/db'
 
@@ -15,13 +15,16 @@ app.use(express.json())
 app.use(helmet())
 app.use(cors())
 
-app.use('/api/auth', authRouter)
+app.post('/api/register', register)
+app.post('/api/login', login)
+
 app.use('/api/shelves', shelfRouter)
 app.use('/api/bookmarks', bookmarkRouter)
 app.use('/api/videos', videoRouter)
 app.use('/api/users', userRouter)
 
 app.get('/', (req, res)=>{
+	
 	res.status(200).send(`Welcome to the site`)
 })
 

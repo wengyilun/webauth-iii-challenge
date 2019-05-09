@@ -4,13 +4,13 @@ module.exports = {
   development: {
     client: 'sqlite3',
     connection: {
-      filename: './src/database/vidque.db3'
+      filename: './database/vidque.db3'
     },
     migrations:{
-      directory:'./src/database/migrations'
+      directory:'./database/migrations'
     },
     seeds:{
-      directory:'./src/database/seeds'
+      directory:'./database/seeds'
     },
     useNullAsDefault:true,
     pool: {
@@ -22,18 +22,18 @@ module.exports = {
   mysql: {
     client: 'mysql',
     connection: {
-      host:'localhost',
+      host:'127.0.0.1',
       user:'root',
       password:'PlanT239@',
       database:'vidkue'
     },
     migrations:{
-      directory:'./src/database/migrations'
+      directory:'./database/migrations'
     },
     seeds:{
-      directory:'./src/database/seeds'
+      directory:'./database/seeds'
     },
-    useNullAsDefault:true,
+    // useNullAsDefault:true,
     pool: {
       afterCreate: (conn, done) => {
         conn.run('PRAGMA foreign_keys = ON', done);

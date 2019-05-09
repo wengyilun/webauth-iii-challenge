@@ -1,9 +1,11 @@
 const knex = require('knex')
-const knexConfig = require('../../knexfile1')
+const knexConfig = require('../../knexfile')
 
-const db = knex(knexConfig.mysql)
+const db = knex(knexConfig.development)
 
-db.connect = () => {
-	console.log('')
-}
+// console.log('db',db)
+// db.connect = () => {
+// 	console.log('')
+// }
+
 module.exports = db;
