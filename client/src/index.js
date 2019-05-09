@@ -4,12 +4,12 @@ import './index.css';
 import {userReducer} from './reducers'
 import {Provider} from 'react-redux'
 import {createStore, applyMiddleware} from 'redux'
-import {BrowserRouter as Router, Switch, Route, withRouter} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, withRouter, NavLink} from "react-router-dom";
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
-import RiderLoginPage from "./views/rider/RiderLoginPage";
-import RiderSignupPage from "./views/rider/RiderSignupPage";
-import RiderHomePage from "./views/rider/RiderHomePage";
+import UserLoginPage from "./views/user/UserLoginPage";
+import UserSignupPage from "./views/user/UserSignupPage";
+import UserHomePage from "./views/user/UserHomePage";
 
 import * as serviceWorker from './serviceWorker';
 
@@ -30,11 +30,14 @@ class App extends React.Component {
 		// }
 		return (
 			<div className="App">
+				<header>
+					<NavLink to="/signin">Login</NavLink>
+				</header>
 				<Switch>
-					<Route exact path="/" component={RiderLoginPage} />
-					<Route path="/signin" component={RiderLoginPage} />
-					<Route path="/signup" component={RiderSignupPage} />
-					<Route path="/users" component={RiderHomePage} />
+					<Route exact path="/" component={UserLoginPage} />
+					<Route path="/signin" component={UserLoginPage} />
+					<Route path="/signup" component={UserSignupPage} />
+					<Route path="/users" component={UserHomePage} />
 				</Switch>
 			</div>
 		);
