@@ -1,31 +1,23 @@
 import axios from 'axios'
+// const getToken = localStorage.getItem('token') || ''
 
 const api = axios.create({
 	baseURL: 'http://localhost:5000',
 	timeout: 60000,
 	headers: {
-		authorization:  'Ellen'
+		authorization: localStorage.getItem('token') || ''
 	}
 })
 
+// axios.defaults.baseURL = 'http://localhost:5000/api'; // process.env.REACT_APP_API_URL
+// axios.interceptors.request.use(
+// 	function(requestConfig) {
+// 		requestConfig.headers.authorization = localStorage.getItem('token');
+//
+// 		return requestConfig;
+// 	},
+// 	function(error) {
+// 		return Promise.reject(error);
+// 	}
+// );
 export default api
-
-// export const loginUser = ()=>{
-// 	return api.get('/smurfs').then(res => res.data)
-// }
-//
-// export const addSmurf = (smurf)=>{
-// 	return api.post('/smurfs', smurf).then(res => res.data)
-// }
-//
-// export const getSmurfByName = (smurf)=>{
-// 	return api.get(`/smurfs/${smurf.name}`).then(res => res.data)
-// }
-//
-// export const updateSmurfById = (smurf)=>{
-// 	return api.put(`/smurfs/${smurf.id}`, smurf).then(res => res.data)
-// }
-//
-// export const deleteSmurf = (id)=>{
-// 	return api.delete(`/smurfs/${id}`).then(res => res.data)
-// }

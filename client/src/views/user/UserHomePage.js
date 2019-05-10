@@ -1,6 +1,61 @@
 import React, { createRef, Component } from 'react';
-// import PinkButton from "../../components/Button/PinkButton";
+import {get_users} from '../../actions';
 import {connect} from 'react-redux'
+import styled from "styled-components";
+import AccountIcon from "@material-ui/icons/PermIdentity";
+import requiresAuth from '../../utils/requiresAuth';
+
+
+const Wrapper = styled.div`
+  width: 500px;
+  margin:0 auto;
+  margin-top: 20px;
+  justify-content:center;
+  h1 {
+  	text-variant: uppercase;
+    padding: 15px 10px;
+    margin:0 auto 20px;
+    font-size: 2rem;
+    top: -20px;
+    text-align: center;
+    font-weight: 700;
+    color: #fff;
+    border-radius:4px;
+  }
+`;
+
+const UserList = styled.ul`
+  padding:0;
+  margin:0;
+  list-style-type:none;
+  text-decoration: none;
+  li {
+    background: #444;
+    padding: 10px 20px;
+    margin-bottom:20px;
+    top: -20px;
+    text-align: left;
+    font-weight: 550;
+    font-weight:bold;
+    color: #fff;
+    z-index:1;
+    border-radius:4px;
+    display: flex;
+    align-items: center;
+    svg{
+    	margin-right: 10px;
+    }
+    span{
+    	background-color:#03DAC5;
+    	color:#222;
+    	padding:10px 20px;
+    	border-radius:4px;
+    	width: 80%;
+    	max-width:80%;
+    	margin-left:20px;
+    }
+  }
+`;
 
 class UserHomePage extends Component {
 	constructor(){
@@ -29,19 +84,14 @@ class UserHomePage extends Component {
 	}
 	
 	componentDidMount() {
-		// const tripRequest = JSON.parse(localStorage.getItem('tripRequest'))
-		// if(tripRequest && tripRequest.startLocation){
-		// 	const trip = {
-		// 		startLocation : tripRequest.startLocation,
-		// 		endLocation : tripRequest.endLocation,
-		// 	}
-		//
-		// 	this.props.findDriversNearby(trip)
-		// 	.then(res => {
-		// 		this.setState({showDriver: !this.state.showDriver})
-		// 	})
-		// }
-	}
+		this.props.get_users()
+		.then(res => {
+			console.log('res', res)
+			if(!res.data){
+				this.setState({users: res})
+				// this.props.history.push('/users');
+			}
+		})}
 	
 	handleChange = e => {
 		// console.log('e',e)
@@ -77,27 +127,35 @@ class UserHomePage extends Component {
 		console.log('cancelling trips')
 	}
 	
-	
 	render() {
 		return (
-			<div className="map-wrapper ">
-				<div id="map-instructions"
-					 name="instruction" ref={instruction => this.inst = instruction}>
-					<h1>{`Welcome to users page ${JSON.parse(localStorage.getItem("loggedInUser")) || "guest"}`}</h1>
-				</div>
-			</div>
+			<Wrapper>
+					<h1>{`Welcome to users page`}</h1>
+					<UserList>
+						{this.state.users && this.state.users.map(el =>{
+							return (<li key={el.id}>
+										<AccountIcon/>{el.username}
+										<span>{el.email}</span>
+									</li>)
+						})}
+					</UserList>
+			</Wrapper>
 		);
 	}
 }
 
-const mapStateToProps = (riderReducer) => (
-	{
-		// findNearbyDriverStarted:riderReducer.findNearbyDriverStarted,
-		// driversNearby: riderReducer.driversNearby,
-		// submitDriverReviewSuccessMessage:riderReducer.submitDriverReviewSuccessMessage
+const mapStateToProps = (state) => {
+	console.log('state', state)
+	return {
+			...state
+		// findNearbyDriverStarted:state.findNearbyDriverStarted,
+		// driversNearby: state.driversNearby,
+		// submitDriverReviewSuccessMessage:state.submitDriverReviewSuccessMessage
 	}
-)
+}
+
 
 export default connect(
 	mapStateToProps,
-)(UserHomePage);
+	{ get_users }
+)(requiresAuth(UserHomePage));

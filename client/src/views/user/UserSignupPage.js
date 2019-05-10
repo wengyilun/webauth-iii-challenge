@@ -134,7 +134,6 @@ class RiderSingupPage extends React.Component {
             console.log('res', res)
             if(!res.data){
                 this.props.history.push('/signin');
-    
             }
         });
     };

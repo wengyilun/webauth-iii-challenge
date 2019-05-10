@@ -85,14 +85,19 @@ const restricted = async (req, res, next) => {
 		res.status(401).json({ message: 'You shall not pass!'});
 	}
 	
-	const user = await Users.findById(decodedToken.subject)
-
-	if (!user) {
-		return res.status(401).end()
+	try {
+		console.log('decodedToken',decodedToken)
+		const user = await Users.findById(decodedToken.subject)
+		if (!user) {
+			return res.status(401).end()
+		}
+		req.user = user
+		next()
 	}
-	
-	req.user = user
-	next()
+	catch(e){
+	 	 console.error(e)
+	 }
+
 }
 
 

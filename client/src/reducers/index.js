@@ -12,7 +12,8 @@ const initialState = {
 	riderSignupStarted: false,
 	riderLoginStarted: false,
 	loggedInUser:null,
-	serverMessage:''
+	serverMessage:'',
+	users:''
 }
 
 export const userReducer = (state = initialState, action)=>{

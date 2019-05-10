@@ -1,15 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import AppWithRouter from './views/App'
 import './index.css';
 import {userReducer} from './reducers'
 import {Provider} from 'react-redux'
 import {createStore, applyMiddleware} from 'redux'
-import {BrowserRouter as Router, Switch, Route, withRouter, NavLink} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, withRouter} from "react-router-dom";
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
-import UserLoginPage from "./views/user/UserLoginPage";
-import UserSignupPage from "./views/user/UserSignupPage";
-import UserHomePage from "./views/user/UserHomePage";
+
 
 import * as serviceWorker from './serviceWorker';
 
@@ -21,30 +20,6 @@ const store = createStore(
 	)
 	// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
-
-
-class App extends React.Component {
-	render() {
-		// if(!this.state.items){
-		// 	return <Loader>Loading Data</Loader>
-		// }
-		return (
-			<div className="App">
-				<header>
-					<NavLink to="/signin">Login</NavLink>
-				</header>
-				<Switch>
-					<Route exact path="/" component={UserLoginPage} />
-					<Route path="/signin" component={UserLoginPage} />
-					<Route path="/signup" component={UserSignupPage} />
-					<Route path="/users" component={UserHomePage} />
-				</Switch>
-			</div>
-		);
-	}
-}
-
-const AppWithRouter = withRouter(App)
 
 
 ReactDOM.render(
